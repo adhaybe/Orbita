@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Antonio:wght@400;500&family=Spartan:wght@400;700&display=swap');
+// Font families
+$font-antonio: 'Antonio', sans-serif;
+$font-spartan: 'Spartan', sans-serif;
+
+// H1
+$h1-font-family: $font-antonio;
+$h1-font-size: 5rem; // 80px
+$h1-line-height: 6.4375rem; // 103px
+
+// H2
+$h2-font-family: $font-antonio;
+$h2-font-size: 2.5rem; // 40px
+$h2-line-height: 3.25rem; // 52px
+$h2-letter-spacing: -1.5px; 
+
+// H3
+$h3-font-family: $font-spartan;
+$h3-font-size: 0.75rem; // 12px
+$h3-line-height: 1.5625rem; // 25px
+$h3-letter-spacing: 2.6px;
+
+// H4
+$h4-font-family: $font-spartan;
+$h4-font-size: 0.6875rem; // 11px
+$h4-line-height: 1.5625rem; // 25px
+$h4-letter-spacing: 1px;
+
+// Body
+$body-font-family: $font-spartan;
+$body-font-size: 0.875rem; // 14px
+$body-line-height: 1.5625rem; // 25px

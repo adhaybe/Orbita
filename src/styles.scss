@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+@import './styles/_typography.scss';
+@import './styles/_variables.scss';
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px; // 1rem = 16px
+
+    body {
+        height: 100%; // Ensures background image covers entire viewport
+        background-image: url('./assets/background-stars.svg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-color: $color-dark-blue;
+    }
+}

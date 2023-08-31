@@ -1,0 +1,175 @@
+// Imports and Variables
+@import '../../../styles/variables';
+@import '../../../styles/typography';
+
+$planet-colors: (
+  mercury: #DEF4FC,
+  venus: #F7CC7F,
+  earth: #545BFE,
+  mars: #FF6A45,
+  jupiter: #ECAD7A,
+  saturn: #FCCB6B,
+  uranus: #65F0D5,
+  neptune: #497EFA
+);
+
+// Mixins
+@mixin flexCenter($direction: row, $justify: space-between, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin textProperties($size, $family, $color, $spacing) {
+  font-size: $size;
+  font-family: $family;
+  color: $color;
+  letter-spacing: $spacing;
+  text-transform: uppercase;
+}
+
+// Navbar
+.navbar {
+  @include flexCenter();
+  background-color: $color-dark-blue;
+  padding: 1.2rem 3rem;
+  border-bottom: 1px solid $color-gray-blue;
+
+  @media (max-width: 910px) {
+    @include flexCenter(column);
+    gap: 2rem;
+    padding: 1.5rem 2rem;
+  }
+
+  @media (max-width: 667px) {
+    @include flexCenter();
+  }
+
+  &__title {
+    @include textProperties(28px, $h2-font-family, $color-white, -1.05px);
+  }
+
+  &__links {
+    @include flexCenter();
+    margin-top: 0.5rem;
+    gap: 2rem;
+
+    a {
+      @include textProperties($h4-font-size, $h4-font-family, $color-white, $h4-letter-spacing);
+      text-decoration: none;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: -1.25rem;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        background-color: transparent;
+        visibility: hidden;
+        z-index: 1;
+      }
+
+      &:hover::before {
+        background-color: $color-teal;
+        visibility: visible;
+      }
+    }
+
+    @media (max-width: 667px) {
+      display: none;
+    }
+  }
+}
+
+// Mobile Nav
+.mobile-nav {
+  position: fixed;
+  top: 6rem;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+  padding: 0 1rem;
+  opacity: 0;
+  background-color: none;
+  transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+  display: none;
+
+  &.active {
+    opacity: 1;
+    display: block;
+    background-color: $color-dark-blue;
+  }
+
+  &__links-container {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      @include flexCenter(space-between, center);
+      padding: 1.25rem 0;
+      border-bottom: 1px solid $color-gray-blue;
+      opacity: 0;
+      transform: translateX(-100%);
+      animation: slideIn 0.5s ease-out forwards;
+
+      @for $i from 1 through 8 {
+        &:nth-child(#{$i}) {
+          animation-delay: 0.1s + $i * 0.1s;
+        }
+      }
+    }
+
+    .planet-icon,
+    .navbar__chevron {
+      margin-right: 1rem;
+    }
+
+    .planet-icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+    }
+
+    a {
+      @include textProperties($h3-font-size, $h3-font-family, $color-white, $h3-letter-spacing);
+      text-decoration: none;
+      flex-grow: 1;
+      font-weight: bold;
+      padding-top: 0.4rem;
+    }
+  }
+}
+
+// Planet Colors
+@each $planet, $color in $planet-colors {
+  .#{$planet} {
+    background-color: $color;
+  }
+}
+
+// Keyframe
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Hamburger
+.hamburger-fill {
+  fill: #FFF;
+
+  &.active,
+  .navbar__hamburger.active & {
+    fill: #808080;
+  }
+}
+
+.hamburger-fill {
+  cursor: pointer;
+}
