@@ -3,7 +3,7 @@
     <span>The Planets</span>
   </section>
   <section class="navbar__links">
-    <a *ngFor="let planet of planets" [routerLink]="planet.route">
+    <a *ngFor="let planet of planets" [routerLink]="planet.route" [ngClass]="planet.name.toLowerCase()">
       {{ planet.name }}
     </a>
   </section>

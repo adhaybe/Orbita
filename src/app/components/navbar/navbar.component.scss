@@ -76,6 +76,13 @@ $planet-colors: (
         background-color: $color-teal;
         visibility: visible;
       }
+
+      @each $planet,
+      $color in $planet-colors {
+        &.#{$planet}:hover::before {
+          background-color: $color;
+        }
+      }
     }
 
     @media (max-width: 667px) {
@@ -87,19 +94,18 @@ $planet-colors: (
 // Mobile Nav
 .mobile-nav {
   position: fixed;
-  top: 6rem;
+  top: 5.35rem;
   left: 0;
   height: 100%;
   width: 100%;
   z-index: 1000;
   padding: 0 1rem;
   opacity: 0;
-  background-color: none;
   transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
   display: none;
 
   &.active {
-    opacity: 1;
+    opacity: 0.9;
     display: block;
     background-color: $color-dark-blue;
   }
@@ -122,6 +128,13 @@ $planet-colors: (
           animation-delay: 0.1s + $i * 0.1s;
         }
       }
+
+      @each $planet,
+      $color in $planet-colors {
+        .#{$planet} {
+          background-color: $color;
+        }
+      }
     }
 
     .planet-icon,
@@ -130,9 +143,9 @@ $planet-colors: (
     }
 
     .planet-icon {
-        width: 24px;
-        height: 24px;
-        border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
     }
 
     a {
@@ -142,13 +155,6 @@ $planet-colors: (
       font-weight: bold;
       padding-top: 0.4rem;
     }
-  }
-}
-
-// Planet Colors
-@each $planet, $color in $planet-colors {
-  .#{$planet} {
-    background-color: $color;
   }
 }
 
@@ -163,13 +169,10 @@ $planet-colors: (
 // Hamburger
 .hamburger-fill {
   fill: #FFF;
+  cursor: pointer;
 
   &.active,
   .navbar__hamburger.active & {
     fill: #808080;
   }
-}
-
-.hamburger-fill {
-  cursor: pointer;
 }
