@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   ];
 
   isMobileView: boolean = false;
-  isOverlayVisible: boolean = true;
+  isOverlayVisible: boolean = false;
 
   ngOnInit(): void {
     this.setMobileView();
