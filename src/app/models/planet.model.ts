@@ -24,17 +24,17 @@ export interface Planet {
 export type PlanetName = 'mercury' | 'venus' | 'earth' | 'mars' | 'jupiter' | 'saturn' | 'uranus' | 'neptune';
 
 export interface Position {
-  top: string;
-  left: string;
+  marginTop: string;
+  marginRight: string;
 }
 
 export const planetOverlayPositions: Record<string, Position> = {
-  mercury: { top: '10rem', left: '38.5rem' },
-  venus: { top: '15rem', left: '35rem' },
-  earth: { top: '17rem', left: '34rem' },
-  mars: { top: '10rem', left: '37.2rem' },
-  jupiter: { top: '23rem', left: '30rem' },
-  saturn: { top: '20rem', left: '27rem' },
-  uranus: { top: '16rem', left: '33.5rem' },
-  neptune: { top: '15rem', left: '34rem' }
+  mercury: { marginTop: '10rem', marginRight: '3rem' },
+  venus: { marginTop: '15rem', marginRight: '6rem' },
+  earth: { marginTop: '17rem', marginRight: '8rem' },
+  mars: { marginTop: '10rem', marginRight: '4.5rem' },
+  jupiter: { marginTop: '23rem', marginRight: '12rem' },
+  saturn: { marginTop: '20rem', marginRight: '15rem' },
+  uranus: { marginTop: '16rem', marginRight: '7.5rem' },
+  neptune: { marginTop: '15rem', marginRight: '7rem' }
 };

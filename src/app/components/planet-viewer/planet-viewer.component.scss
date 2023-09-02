@@ -3,23 +3,60 @@
 @import '../../../styles/typography';
 
 $planet-colors: (
-  mercury: #419EBB,
-  venus: #EDA249,
-  earth: #6D2ED5,
-  mars: #D14C32,
-  jupiter: #D83A34,
-  saturn: #CD5120,
-  uranus: #1EC1A2,
-  neptune: #2D68F0
+    mercury: #419EBB,
+    venus: #EDA249,
+    earth: #6D2ED5,
+    mars: #D14C32,
+    jupiter: #D83A34,
+    saturn: #CD5120,
+    uranus: #1EC1A2,
+    neptune: #2D68F0
 );
 
-@each $planet, $color in $planet-colors {
-    .#{$planet} {
-      &.active {
-        background-color: $color !important;
-      }
+@mixin underline-active($left, $width) {
+    &::before {
+        content: "";
+        position: absolute;
+        inset: unset !important;
+        margin-top: 3.45rem;
+        margin-left: $left;
+        height: 2px;
+        width: $width;
+        z-index: 1;
     }
-  }
+}
+
+@each $planet,
+$color in $planet-colors {
+    .#{$planet} {
+        &.active {
+            background-color: $color !important;
+        }
+
+        &.underline-active-overview {
+            @include underline-active(0rem, 16%);
+        }
+
+        &.underline-active-structure {
+            @include underline-active(0.2rem, 16%);
+        }
+
+        &.underline-active-geology {
+            @include underline-active(0rem, 15%);
+        }
+
+        &:active::before {
+            visibility: visible;
+        }
+
+        @each $planet,
+        $color in $planet-colors {
+            &.#{$planet}:hover::before {
+                background-color: $color;
+            }
+        }
+    }
+}
 
 .planet-viewer-container {
     display: flex;
@@ -30,6 +67,7 @@ $planet-colors: (
 
     .mobile-info-action-btns {
         display: none;
+        position: relative;
 
         @media (max-width: 666px) {
 
@@ -59,7 +97,6 @@ $planet-colors: (
                     text-transform: uppercase;
                     padding: 1rem 1rem;
                     opacity: 0.5;
-                    cursor: pointer;
                 }
             }
         }
@@ -89,12 +126,32 @@ $planet-colors: (
         padding-right: 5rem;
         align-items: center;
 
+        @media (max-width: 666px) {
+            padding-right: 8rem;
+        }
+
+        @media (max-width: 910px) {
+            padding-right: 10rem;
+        }
+
+        img {
+    
+
+            @media (max-width: 910px) {
+                width: 70%;  // Adjust this to whatever size you prefer at the breakpoint
+                height: auto;
+            }
+
+            @media (max-width: 666px) {
+                width: 80%;  // Adjust this to whatever size you prefer at the breakpoint
+                height: auto;
+            }
+        }
+
         .geology-overlay {
             position: absolute;
-            top: 10rem;
-            left: 38.4rem;
-            z-index: 2;
-            width: 12rem;    
+            inset: unset !important;
+            width: 12rem;
         }
     }
 
@@ -272,21 +329,21 @@ $planet-colors: (
     gap: 3rem;
 
     @media (max-width: 1350px) {
-        padding: 5rem 8rem;   
+        padding: 5rem 8rem;
     }
 
     @media (max-width: 1000px) {
-        padding: 1rem 5.8rem;   
+        padding: 1rem 5.8rem;
     }
 
     @media (max-width: 910px) {
-        padding: 1rem 1rem;   
+        padding: 1rem 1rem;
     }
 
     @media (max-width: 666px) {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 1rem; 
+        gap: 1rem;
     }
 
     .info-box {
@@ -309,11 +366,12 @@ $planet-colors: (
             justify-content: space-between;
             padding: 0 1rem;
 
-            .info-title, .info-data {
+            .info-title,
+            .info-data {
                 width: auto;
             }
         }
-        
+
         .info-title {
             font-family: $font-spartan;
             line-height: $h4-line-height;
@@ -331,8 +389,8 @@ $planet-colors: (
             }
 
             @media (max-width: 666px) {
-              font-size: 0.6rem;
-              padding-top: 1rem;
+                font-size: 0.6rem;
+                padding-top: 1rem;
             }
         }
 

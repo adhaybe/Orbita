@@ -1,33 +1,43 @@
 <section class="planet-viewer-container">
     <section class="mobile-info-action-btns">
         <ul class="mobile-btn-list">
-            <li><button class="overview-btn-mobile">Overview</button></li>
-            <li><button class="internal-structure-btn-mobile">Structure</button></li>
-            <li><button class="surface-btn-mobile">Surface</button></li>
+            <li [ngClass]="{'underline-active-overview': selectedTab === 'overview'}" [class]="currentPlanetClass"
+                (click)="changeTab('overview')"><button class="overview-btn-mobile">Overview</button></li>
+            <li [ngClass]="{'underline-active-structure': selectedTab === 'internalStructure'}"
+                [class]="currentPlanetClass"><button class="internal-structure-btn-mobile"
+                    (click)="changeTab('internalStructure')">Structure</button></li>
+            <li [ngClass]="{'underline-active-geology': selectedTab === 'surfaceGeology'}" [class]="currentPlanetClass">
+                <button class="surface-btn-mobile" (click)="changeTab('surfaceGeology')">Surface</button></li>
         </ul>
     </section>
 
     <!-- Planet Image -->
     <figure class="planet-image-container">
         <!-- For 'overview' and 'surfaceGeology', the planet image should be displayed -->
-        <img *ngIf="selectedTab === 'overview' || selectedTab === 'surfaceGeology'" [src]="planet?.images?.planet" alt="Planet">
-      
+        <img *ngIf="selectedTab === 'overview' || selectedTab === 'surfaceGeology'" [src]="planet?.images?.planet"
+            alt="Planet">
+
         <!-- For 'internalStructure', show the core image -->
         <img *ngIf="selectedTab === 'internalStructure'" [src]="planet?.images?.internal" alt="Internal Structure">
-      
+
         <!-- For 'surfaceGeology', show the geology image -->
-        <img *ngIf="selectedTab === 'surfaceGeology'" [src]="planet?.images?.geology" class="geology-overlay"  [ngStyle]="getOverlayPosition()"  alt="Planet Geology">
-      </figure>      
-      
+        <img *ngIf="selectedTab === 'surfaceGeology'" [src]="planet?.images?.geology" class="geology-overlay"
+            [ngStyle]="getOverlayPosition()" alt="Planet Geology">
+    </figure>
+
 
     <!-- Planet Fact Details -->
     <article class="planet-facts-container">
-        <section class="planet-details" >
+        <section class="planet-details">
             <h1 class="planet-name">{{ planet?.name }}</h1>
-            <p class="planet-text-body">{{ selectedTab === 'overview' ? planet?.overview?.content : selectedTab === 'internalStructure' ? planet?.structure?.content : selectedTab === 'surfaceGeology' ?  planet?.geology?.content : null }}</p>
+            <p class="planet-text-body">{{ selectedTab === 'overview' ? planet?.overview?.content : selectedTab ===
+                'internalStructure' ? planet?.structure?.content : selectedTab === 'surfaceGeology' ?
+                planet?.geology?.content : null }}</p>
 
             <span class="source-container">
-                <p class="source">Source: <a class="wiki-link" [href]="selectedTab === 'overview' ? planet?.overview?.source : selectedTab === 'internalStructure' ? planet?.structure?.source : selectedTab === 'surfaceGeology' ?  planet?.geology?.source : null" target="_blank">Wikipedia</a></p>
+                <p class="source">Source: <a class="wiki-link"
+                        [href]="selectedTab === 'overview' ? planet?.overview?.source : selectedTab === 'internalStructure' ? planet?.structure?.source : selectedTab === 'surfaceGeology' ?  planet?.geology?.source : null"
+                        target="_blank">Wikipedia</a></p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" class="source-icon">
                     <path fill="#FFF"
                         d="M11.34.66C10.9.22 10.37 0 9.75 0h-7.5C1.63 0 1.1.22.66.66.22 1.1 0 1.63 0 2.25v7.5c0 .62.22 1.15.66 1.59.44.44.97.66 1.59.66h7.5c.62 0 1.15-.22 1.59-.66.44-.44.66-.97.66-1.59v-7.5c0-.62-.22-1.15-.66-1.59zM10 6.25a.467.467 0 01-.305.46.544.544 0 01-.195.04.465.465 0 01-.352-.149L8.023 5.476 3.852 9.648a.481.481 0 01-.352.149.48.48 0 01-.352-.149l-.796-.797a.48.48 0 01-.149-.351.48.48 0 01.149-.352l4.172-4.172-1.125-1.125c-.162-.15-.198-.333-.11-.546A.467.467 0 015.75 2H9.5c.135 0 .253.05.352.148A.48.48 0 0110 2.5v3.75z" />
@@ -36,13 +46,16 @@
         </section>
 
         <section class="planet-info-buttons">
-            <button class="overview-btn" [ngClass]="{'active': selectedTab === 'overview'}" [class]="currentPlanetClass" (click)="changeTab('overview')">
+            <button class="overview-btn" [ngClass]="{'active': selectedTab === 'overview'}" [class]="currentPlanetClass"
+                (click)="changeTab('overview')">
                 <span class="btn-numbers">01</span>Overview
             </button>
-            <button class="internal-structure-btn" [ngClass]="{'active': selectedTab === 'internalStructure'}" [class]="currentPlanetClass" (click)="changeTab('internalStructure')">
+            <button class="internal-structure-btn" [ngClass]="{'active': selectedTab === 'internalStructure'}"
+                [class]="currentPlanetClass" (click)="changeTab('internalStructure')">
                 <span class="btn-numbers">02</span>Internal Structure
             </button>
-            <button class="surface-btn" [ngClass]="{'active': selectedTab === 'surfaceGeology'}" [class]="currentPlanetClass" (click)="changeTab('surfaceGeology')">
+            <button class="surface-btn" [ngClass]="{'active': selectedTab === 'surfaceGeology'}"
+                [class]="currentPlanetClass" (click)="changeTab('surfaceGeology')">
                 <span class="btn-numbers">03</span>Surface Geology
             </button>
         </section>
