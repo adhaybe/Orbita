@@ -3,7 +3,7 @@
     <span>The Planets</span>
   </section>
   <section class="navbar__links">
-    <a *ngFor="let planet of planets" [routerLink]="planet.route" [ngClass]="planet.name.toLowerCase()">
+    <a *ngFor="let planet of planets" [ngClass]="planet.name.toLowerCase()" (click)="onPlanetSelect(planet.name)">
       {{ planet.name }}
     </a>
   </section>
@@ -20,10 +20,10 @@
   <section *ngIf="isMobileView" class="mobile-nav" [ngClass]="{'active': isOverlayVisible}">
 
     <ul class="mobile-nav__links-container">
-      <li *ngFor="let planet of planets">
-        <span class="planet-icon" [ngClass]="planet.icon" *ngIf="isMobileView"></span>
-        <a [routerLink]="planet.route">{{ planet.name }}</a>
-        <img [routerLink]="planet.route" src="../../../assets/icon-chevron.svg" class="navbar__chevron" alt="Menu">
+      <li *ngFor="let planet of planets" (click)="onPlanetSelect(planet.name)">
+        <span class="planet-icon" [ngClass]="planet.name.toLowerCase()" *ngIf="isMobileView"></span>
+        <a>{{ planet.name }}</a>
+        <img src="../../../assets/icon-chevron.svg" class="navbar__chevron" alt="Menu">
       </li>
     </ul>
 

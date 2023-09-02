@@ -1,4 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Planet } from 'src/app/models/planet.model';
+import { PlanetService } from 'src/app/services/planet.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,22 +8,27 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  planets = [
-    { name: 'Mercury', route: '/mercury', icon: 'mercury' },
-    { name: 'Venus', route: '/venus', icon: 'venus' },
-    { name: 'Earth', route: '/earth', icon: 'earth' },
-    { name: 'Mars', route: '/mars', icon: 'mars' },
-    { name: 'Jupiter', route: '/jupiter', icon: 'jupiter' },
-    { name: 'Saturn', route: '/saturn', icon: 'saturn' },
-    { name: 'Uranus', route: '/uranus', icon: 'uranus' },
-    { name: 'Neptune', route: '/neptune', icon: 'neptune' },
-  ];
+  planets: Planet[] = [];
 
   isMobileView: boolean = false;
   isOverlayVisible: boolean = false;
 
+  constructor(private planetService: PlanetService) { }
+
   ngOnInit(): void {
     this.setMobileView();
+    this.planetService.getPlanets().subscribe((data) => {
+      this.planets = data;
+    });
+  }
+
+  onPlanetSelect(name: string): void {
+    const selectedPlanet = this.planets.find(planet => planet.name === name);
+    if (selectedPlanet) {
+      this.planetService.setSelectedPlanet(selectedPlanet);
+    }
+
+    console.log(selectedPlanet);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -30,7 +37,7 @@ export class NavbarComponent implements OnInit {
   }
 
   toggleOverlay() {
-    this.isOverlayVisible  = !this.isOverlayVisible;
+    this.isOverlayVisible = !this.isOverlayVisible;
   }
 
   private setMobileView(): void {
