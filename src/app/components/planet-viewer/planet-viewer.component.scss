@@ -126,28 +126,6 @@ $color in $planet-colors {
         padding-right: 5rem;
         align-items: center;
 
-        @media (max-width: 666px) {
-            padding-right: 8rem;
-        }
-
-        @media (max-width: 910px) {
-            padding-right: 10rem;
-        }
-
-        img {
-    
-
-            @media (max-width: 910px) {
-                width: 70%;  // Adjust this to whatever size you prefer at the breakpoint
-                height: auto;
-            }
-
-            @media (max-width: 666px) {
-                width: 80%;  // Adjust this to whatever size you prefer at the breakpoint
-                height: auto;
-            }
-        }
-
         .geology-overlay {
             position: absolute;
             inset: unset !important;

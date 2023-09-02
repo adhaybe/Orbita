@@ -14,14 +14,14 @@
     <!-- Planet Image -->
     <figure class="planet-image-container">
         <!-- For 'overview' and 'surfaceGeology', the planet image should be displayed -->
-        <img *ngIf="selectedTab === 'overview' || selectedTab === 'surfaceGeology'" [src]="planet?.images?.planet"
+        <img class="image-overlay" *ngIf="selectedTab === 'overview' || selectedTab === 'surfaceGeology'" [src]="planet?.images?.planet"
             alt="Planet">
 
         <!-- For 'internalStructure', show the core image -->
         <img *ngIf="selectedTab === 'internalStructure'" [src]="planet?.images?.internal" alt="Internal Structure">
 
         <!-- For 'surfaceGeology', show the geology image -->
-        <img *ngIf="selectedTab === 'surfaceGeology'" [src]="planet?.images?.geology" class="geology-overlay"
+        <img class="image-overlay" *ngIf="selectedTab === 'surfaceGeology'" [src]="planet?.images?.geology" class="geology-overlay"
             [ngStyle]="getOverlayPosition()" alt="Planet Geology">
     </figure>
 
