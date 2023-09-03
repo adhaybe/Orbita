@@ -35,7 +35,6 @@ $planet-colors: (
   background-color: $color-dark-blue;
   padding: 1.2rem 3rem;
   border-bottom: 1px solid $color-gray-blue;
-  cursor: pointer;
 
   @media (max-width: 910px) {
     @include flexCenter(column);
@@ -60,6 +59,7 @@ $planet-colors: (
       @include textProperties($h4-font-size, $h4-font-family, $color-white, $h4-letter-spacing);
       text-decoration: none;
       position: relative;
+      cursor: pointer;
 
       &::before {
         content: "";
